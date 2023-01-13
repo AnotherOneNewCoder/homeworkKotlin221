@@ -1,6 +1,6 @@
 
 data class Post(
-    val id : Int,
+    var id : Int,
     val ownerId : Int,
     val fromId : Int,
     val date : Int,
@@ -13,10 +13,17 @@ data class Post(
 )
 object WallService {
     private var posts = emptyArray<Post>()
+    private var id = 1
 
     fun add(post: Post): Post {
+        post.id = id
         posts += post
+        id++
         return posts.last()
+    }
+    fun print(){
+        for (post in posts)
+            println(post)
     }
 }
 //count (integer) — количество комментариев;
@@ -25,38 +32,68 @@ object WallService {
 //can_close(boolean) — может ли текущий пользователь закрыть комментарии к записи;
 //can_open(boolean) — может ли текущий пользователь открыть комментарии к записи.
 class comment(
-    count: Int = 0,
+    counts: Int = 0,
     var canPost: Boolean = true,
     var groupsCanPost: Boolean = true,
     var canClose: Boolean = true,
-    var canOpen: Boolean = true,
+    var canOpen: Boolean = true
 ){
-    var counts = count
+    var counts = counts
         set(value){
             if (value < 0)
                 return
             field = value
         }
+
+    override fun toString(): String {
+        return " counts = $counts, canPost = $canPost, groupsCanPost = $groupsCanPost, canClose = $canClose, canOpen = $canOpen"
+    }
 }
 //count (integer) — число пользователей, которым понравилась запись;
 //user_likes* (boolean) — наличие отметки «Мне нравится» от текущего пользователя;
 //can_like* (boolean) — информация о том, может ли текущий пользователь поставить отметку «Мне нравится»;
 //can_publish* (boolean) — информация о том, может ли текущий пользователь сделать репост записи.
 class likes(
-    count: Int = 0,
+    counts: Int = 0,
     var userLikes: Boolean = true,
     var canLike: Boolean = true,
     var canPublish: Boolean = true
 ){
-    var counts = count
+    var counts = counts
         set(value){
-            if (value < 0)
-                return
-            field = value
+            field = if (value >= 0)
+                value
+            else
+                0
         }
+
+    override fun toString(): String {
+        return " counts = $counts,userLikes = $userLikes, canLike = $canLike, canPublish = $canPublish"
+    }
 }
 
 
 fun main() {
+    val com = comment()
+    val like = likes()
+    like.counts = -4
+    com.counts = - 10
+    val post1 = Post(1, 123,321, 211221, 111, "Nature","Advanture in the forest",true,
+    com, like)
+    val post2 = Post(1, 123,321, 211221, 111, "Since","News from space",true,
+        com, like)
+    val post3 = Post(1, 123,321, 211221, 111, "Medicine","Health to everyone",true,
+        com, like)
+    WallService.add(post1)
+    WallService.add(post2)
+    WallService.add(post3)
+
+//    WallService.add(Post(1,123,321,211221,0,"Nature",
+//        "Advanture in the forest", false,com, like))
+//    WallService.add(Post(1,123,321,211221,0,"Since",
+//        "News from space", false,com, like))
+//    WallService.add(Post(1,123,321,211221,0,"Medicine",
+//        "Health to everyone", false,com, like))
+    WallService.print()
 
 }

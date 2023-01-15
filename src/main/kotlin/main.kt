@@ -1,6 +1,7 @@
+import java.util.*
 
 data class Post(
-    var id : Int,
+    val id : Int,
     val ownerId : Int,
     val fromId : Int,
     val date : Int,
@@ -9,22 +10,38 @@ data class Post(
     val text : String,
     val friendsOnly : Boolean,
     val comment: comment,
-    val likes: likes,
+    val likes: likes
 )
 object WallService {
     private var posts = emptyArray<Post>()
     private var id = 1
 
     fun add(post: Post): Post {
-        post.id = id
-        posts += post
+        val postId = post.copy(id = id)
+        posts += postId
         id++
         return posts.last()
     }
-    fun print(){
+
+    fun print() {
         for (post in posts)
             println(post)
     }
+
+    fun update(post: Post): Post {
+    for ((index, post2) in posts.withIndex()) {
+        when {
+            post2.id.equals(post.id) -> {
+                println("found id in array with index: $index")
+                val postUpdate = post.copy(ownerId = post2.ownerId, date = post2.date)
+                posts.set(index, postUpdate)
+                return post
+            }
+
+        }
+    }
+    return post
+}
 }
 //count (integer) — количество комментариев;
 //can_post* (boolean) — информация о том, может ли текущий пользователь комментировать запись;
@@ -84,16 +101,15 @@ fun main() {
         com, like)
     val post3 = Post(1, 123,321, 211221, 111, "Medicine","Health to everyone",true,
         com, like)
+    val post4 = Post(3, 321,123, 217221, 151, "Update","ggg",true,
+        com, like)
     WallService.add(post1)
     WallService.add(post2)
     WallService.add(post3)
-
-//    WallService.add(Post(1,123,321,211221,0,"Nature",
-//        "Advanture in the forest", false,com, like))
-//    WallService.add(Post(1,123,321,211221,0,"Since",
-//        "News from space", false,com, like))
-//    WallService.add(Post(1,123,321,211221,0,"Medicine",
-//        "Health to everyone", false,com, like))
     WallService.print()
+    WallService.update(post4)
+    WallService.print()
+
+
 
 }

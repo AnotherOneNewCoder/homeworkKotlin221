@@ -28,19 +28,19 @@ object WallService {
             println(post)
     }
 
-    fun update(post: Post): Post {
+    fun update(post: Post): Boolean {
     for ((index, post2) in posts.withIndex()) {
         when {
             post2.id.equals(post.id) -> {
                 println("found id in array with index: $index")
                 val postUpdate = post.copy(ownerId = post2.ownerId, date = post2.date)
                 posts.set(index, postUpdate)
-                return post
+                return true
             }
 
         }
     }
-    return post
+    return false
 }
 }
 //count (integer) — количество комментариев;

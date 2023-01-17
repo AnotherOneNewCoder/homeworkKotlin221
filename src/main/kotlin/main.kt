@@ -14,12 +14,12 @@ data class Post(
 )
 object WallService {
     private var posts = emptyArray<Post>()
-    private var id = 1
+    private var id = 0
 
     fun add(post: Post): Post {
+        id++
         val postId = post.copy(id = id)
         posts += postId
-        id++
         return posts.last()
     }
 

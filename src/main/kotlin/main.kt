@@ -1,16 +1,70 @@
-
-
+interface Attachment {
+    val id: Int
+    val ownerId: Int
+    val date: Int
+    val title: String
+    val type: Attachment
+    val size: Long
+}
+class AudioAttachment(
+    override val id: Int,
+    override val ownerId: Int,
+    override val date: Int,
+    override val title: String,
+    override val type: AudioAttachment,
+    override val size: Long,
+    val file: Audio
+) : Attachment {
+    override fun toString(): String {
+        return "Id: $id, Title: $title $file"
+    }
+}
+class Audio (
+    val duration: Int,
+    val artist: String,
+    val url: String,
+    val song: String
+        ) {
+    override fun toString(): String {
+        return "Artist $artist, Song: $song "
+    }
+}
+class VideoAttachment(
+    override val id: Int,
+    override val ownerId: Int,
+    override val date: Int,
+    override val title: String,
+    override val type: VideoAttachment,
+    override val size: Long,
+    val file: Video
+) : Attachment {
+    override fun toString(): String {
+        return "Id: $id, Title: $title $file"
+    }
+}
+class Video (
+    val duration: Int,
+    val artist: String,
+    val url: String,
+    val video: String
+) {
+    override fun toString(): String {
+        return "Artist $artist, Video: $video "
+    }
+}
+//id, ownerId, date, title, size
 data class Post(
-    val id : Int,
-    val ownerId : Int,
-    val fromId : Int,
-    val date : Int,
+    val id: Int,
+    val ownerId: Int,
+    val fromId: Int,
+    val date: Int,
     val replyPostId : Int?,
     val postType : String,
-    val text : String,
-    val friendsOnly : Boolean,
+    val text: String,
+    val friendsOnly: Boolean,
     val comment: comment,
-    val likes: likes
+    val likes: likes,
+    val attach: Array<Attachment>
 )
 object WallService {
     private var posts = emptyArray<Post>()

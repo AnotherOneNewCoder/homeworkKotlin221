@@ -5,7 +5,7 @@ data class Post(
     val ownerId : Int,
     val fromId : Int,
     val date : Int,
-    val replyPostId : Int,
+    val replyPostId : Int?,
     val postType : String,
     val text : String,
     val friendsOnly : Boolean,
@@ -95,13 +95,13 @@ fun main() {
     val like = likes()
     like.counts = -4
     com.counts = - 10
-    val post1 = Post(1, 123,321, 211221, 111, "Nature","Advanture in the forest",true,
+    val post1 = Post(1, 123,321, 211221, null, "Nature","Advanture in the forest",true,
     com, like)
     val post2 = Post(1, 123,321, 211221, 111, "Since","News from space",true,
         com, like)
     val post3 = Post(1, 123,321, 211221, 111, "Medicine","Health to everyone",true,
         com, like)
-    val post4 = Post(3, 321,123, 217221, 151, "Update","ggg",true,
+    val post4 = Post(3, 321,123, 217221, null, "Update","ggg",true,
         com, like)
     WallService.add(post1)
     WallService.add(post2)

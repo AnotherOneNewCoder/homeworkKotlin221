@@ -28,7 +28,7 @@ class WallServiceTest {
         service.add(Post(0,1,1,10123,0,"test1", "test1",true,comment(0),likes(-3)))
         service.add(Post(0,1,1,10123,0,"test2", "test2",true,comment(0),likes(-3)))
         service.add(Post(0,1,1,10123,0,"test31", "test3",true,comment(0),likes(-3)))
-        val update = Post(2,1,1,170123,0,"test4", "test4",true,comment(0),likes(-3))
+        val update = Post(2,1,1,170123,null,"test4", "test4",true,comment(0),likes(-3))
         val result = service.update(update)
         assertTrue(result)
     }
@@ -38,7 +38,7 @@ class WallServiceTest {
         service.add(Post(0,1,1,10123,0,"test1", "test1",true,comment(0),likes(-3)))
         service.add(Post(0,1,1,10123,0,"test2", "test2",true,comment(0),likes(-3)))
         service.add(Post(0,1,1,10123,0,"test3", "test3",true,comment(0),likes(-3)))
-        val update = Post(57,1,1,170123,0,"test4", "test4",true,comment(0),likes(-3))
+        val update = Post(57,1,1,170123,null,"test4", "test4",true,comment(0),likes(-3))
         val result = service.update(update)
         assertFalse(result)
     }

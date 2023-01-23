@@ -52,6 +52,28 @@ class Video (
         return "Artist $artist, Video: $video "
     }
 }
+class PhotoAttachment(
+    override val id: Int,
+    override val ownerId: Int,
+    override val date: Int,
+    override val title: String,
+    override val type: PhotoAttachment,
+    override val size: Long,
+    val file: Photo
+) : Attachment {
+    override fun toString(): String {
+        return "Id: $id, Title: $title $file"
+    }
+}
+class Photo (
+    val photograph: String,
+    val url: String,
+    val name: String
+) {
+    override fun toString(): String {
+        return "Photograph $photograph, Image: $name "
+    }
+}
 //id, ownerId, date, title, size
 data class Post(
     val id: Int,

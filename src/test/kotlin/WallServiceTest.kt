@@ -11,17 +11,22 @@ class WallServiceTest {
 
     private var posts = emptyArray<Post>()
     private var id = 0
-    val audioAttach = AudioAttachment(16, 16, 250123, "Audio",300,
-        Audio("Nirvana", "www.nirvana.org", "Smells like teen spirit")
-    )
-    val videoAttach = VideoAttachment(17, 16, 250123, "Video",900,
-        Video("Simpsons", "www.ourweekend.org", "Family in the forest")
-    )
-    val photoAttach = PhotoAttachment(18, 16, 250123, "Photo",100, Photo("Simpsons", "www.ourweekend.org", "We met bear"))
-    val fileAttach = FileAttachment(19, 16, 250123, "File",100, File("Simpsons", "www.ourweekend.org", "Our family notes"))
-    val presentAttach = PresentAttachment(20, 16, 250123, "Present",100, Present("Simpsons", "www.ourweekend.org", "Present from forest"))
+//    val audioAttach = AudioAttachment(16, 16, 250123, "Audio",300,
+//        Audio("Nirvana", "www.nirvana.org", "Smells like teen spirit")
+//    )
+//    val videoAttach = VideoAttachment(17, 16, 250123, "Video",900,
+//        Video("Simpsons", "www.ourweekend.org", "Family in the forest")
+//    )
+//    val photoAttach = PhotoAttachment(18, 16, 250123, "Photo",100, Photo("Simpsons", "www.ourweekend.org", "We met bear"))
+//    val fileAttach = FileAttachment(19, 16, 250123, "File",100, File("Simpsons", "www.ourweekend.org", "Our family notes"))
+//    val presentAttach = PresentAttachment(20, 16, 250123, "Present",100, Present("Simpsons", "www.ourweekend.org", "Present from forest"))
+//    val arrayAttach = arrayOf(audioAttach,videoAttach,photoAttach,fileAttach,presentAttach)
+    val audioAttach = AudioAttachment(Audio("Nirvana", "www.nirvana.org", "Smells like teen spirit"))
+    val videoAttach = VideoAttachment(Video("Simpsons", "www.ourweekend.org", "Family in the forest"))
+    val photoAttach = PhotoAttachment(Photo("Simpsons", "www.ourweekend.org", "We met bear"))
+    val fileAttach = FileAttachment(Audio("Simpsons", "www.ourweekend.org", "Our family notes"))
+    val presentAttach = AudioAttachment(Audio("Simpsons", "www.ourweekend.org", "Present from forest"))
     val arrayAttach = arrayOf(audioAttach,videoAttach,photoAttach,fileAttach,presentAttach)
-
 
     @Test
     fun add() {

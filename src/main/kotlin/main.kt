@@ -1,79 +1,7 @@
-interface Attachment {
-    val id: Int
-    val ownerId: Int
-    val date: Int
-    val title: String
-    val type: Attachment
-    val size: Long
-}
-class AudioAttachment(
-    override val id: Int,
-    override val ownerId: Int,
-    override val date: Int,
-    override val title: String,
-    override val type: AudioAttachment,
-    override val size: Long,
-    val file: Audio
-) : Attachment {
-    override fun toString(): String {
-        return "Id: $id, Title: $title $file"
-    }
-}
-class Audio (
-    val duration: Int,
-    val artist: String,
-    val url: String,
-    val song: String
-        ) {
-    override fun toString(): String {
-        return "Artist $artist, Song: $song "
-    }
-}
-class VideoAttachment(
-    override val id: Int,
-    override val ownerId: Int,
-    override val date: Int,
-    override val title: String,
-    override val type: VideoAttachment,
-    override val size: Long,
-    val file: Video
-) : Attachment {
-    override fun toString(): String {
-        return "Id: $id, Title: $title $file"
-    }
-}
-class Video (
-    val duration: Int,
-    val artist: String,
-    val url: String,
-    val video: String
-) {
-    override fun toString(): String {
-        return "Artist $artist, Video: $video "
-    }
-}
-class PhotoAttachment(
-    override val id: Int,
-    override val ownerId: Int,
-    override val date: Int,
-    override val title: String,
-    override val type: PhotoAttachment,
-    override val size: Long,
-    val file: Photo
-) : Attachment {
-    override fun toString(): String {
-        return "Id: $id, Title: $title $file"
-    }
-}
-class Photo (
-    val photograph: String,
-    val url: String,
-    val name: String
-) {
-    override fun toString(): String {
-        return "Photograph $photograph, Image: $name "
-    }
-}
+import attach.*
+import files.*
+
+
 //id, ownerId, date, title, size
 data class Post(
     val id: Int,
@@ -171,14 +99,21 @@ fun main() {
     val like = likes()
     like.counts = -4
     com.counts = - 10
+    val audioAttach = AudioAttachment(16, 16, 250123, "Audio",300,Audio("Nirvana", "www.nirvana.org", "Smells like teen spirit"))
+    val videoAttach = VideoAttachment(17, 16, 250123, "Video",900,Video("Simpsons", "www.ourweekend.org", "Family in the forest"))
+    val photoAttach = PhotoAttachment(18, 16, 250123, "Photo",100, Photo("Simpsons", "www.ourweekend.org", "We met bear"))
+    val fileAttach = FileAttachment(19, 16, 250123, "File",100, File("Simpsons", "www.ourweekend.org", "Our family notes"))
+    val presentAttach = PresentAttachment(20, 16, 250123, "Present",100, Present("Simpsons", "www.ourweekend.org", "Present from forest"))
+    val arrayAttach = arrayOf(audioAttach,videoAttach,photoAttach,fileAttach,presentAttach)
+
     val post1 = Post(1, 123,321, 211221, null, "Nature","Advanture in the forest",true,
-    com, like)
+    com, like,arrayAttach)
     val post2 = Post(1, 123,321, 211221, 111, "Since","News from space",true,
-        com, like)
+        com, like, arrayAttach)
     val post3 = Post(1, 123,321, 211221, 111, "Medicine","Health to everyone",true,
-        com, like)
+        com, like, arrayAttach)
     val post4 = Post(3, 321,123, 217221, null, "Update","ggg",true,
-        com, like)
+        com, like,arrayAttach)
     WallService.add(post1)
     WallService.add(post2)
     WallService.add(post3)
